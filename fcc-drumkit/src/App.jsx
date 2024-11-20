@@ -67,7 +67,9 @@ export default function App() {
 
     return (
         <body id="drum-machine">
-            <div className="padbank"></div>
+            <div className="padbank">
+                {drumItems}
+            </div>
             <div className="controlscontainer"></div>
         </body>
     )

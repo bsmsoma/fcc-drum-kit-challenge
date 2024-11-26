@@ -1,14 +1,10 @@
 import React, {useEffect} from "react";
-import ReactDOM from "react-dom"
+
 export default function App() {
 
-    useEffect(() => {
-        const handleKeyPress = (event) => {
-            console.log(event.code)
-        }
-        window.addEventListener("keydown", handleKeyPress);
-
-    }, [])
+    function handleClick (event) {
+        console.log(event)
+    }
 
     const data = [
         {
@@ -59,13 +55,12 @@ export default function App() {
 
     ];
     
-
     const drumItems = data.map(item => {
         return (
             <div
                 className="drum-pad"
                 id={item.text}
-                onClick={handleClick}
+                onClick={() => handleClick()}
                 >
                 {item.text} {/*The Div Text*/}
                 <audio
@@ -76,10 +71,6 @@ export default function App() {
             </div>
         )
     })
-    
-    function handleClick(e) {
-        console.log(e)
-    }
 
     return (
         <body>

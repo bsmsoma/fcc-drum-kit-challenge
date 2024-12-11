@@ -2,9 +2,7 @@ import React, {useEffect} from "react";
 
 export default function App() {
 
-    function handleClick (event) {
-        console.log(event)
-    }
+    
 
     const data = [
         {

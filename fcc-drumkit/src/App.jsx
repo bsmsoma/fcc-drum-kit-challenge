@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 
 export default function App() {
 
@@ -58,7 +58,8 @@ export default function App() {
             <div
                 className="drum-pad"
                 id={item.text}
-                onClick={() => handleClick()}
+                onClick={() => handleClick(item.text)}
+                key={item.text}
                 >
                 {item.text} {/*The Div Text*/}
                 <audio
@@ -66,20 +67,27 @@ export default function App() {
                     src={item.audioUrl}
                     id={item.text}>
                 </audio>
+                <p>{item.name}</p>
             </div>
         )
     })
+    
+    function handleClick(id) {
+       console.log(id)
+    }
 
     return (
-        <body>
+        <section>
             <div id="drum-machine">
                 <div className="padbank">
-                    {drumItems}
+                    <div className="frame">{drumItems.slice(0,3)}</div>
+                    <div className="frame">{drumItems.slice(3,6)}</div>
+                    <div className="frame">{drumItems.slice(6,9)}</div>
                 </div>
                 <div className="controlscontainer"> 
-                    <div id="display">Teste</div>
+                    <div id="display">Teseste</div>
                 </div>
             </div>
-        </body>
+        </section>
     )
 }

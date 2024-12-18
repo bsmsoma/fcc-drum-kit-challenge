@@ -20,59 +20,71 @@ body {
     width: 100%;
 
     #drum-machine {
-        width: 800px;
-        height: 600px;
+        width: 450px;
+        height: 500px;
         border: 10px solid $saffron;
         border-radius: 20px;
         background-color: $charcoal;
         display: flex;
+        flex-direction: column-reverse;
 
         .padbank {
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-around;
             align-items: center;
-            width: 50%;
-            height: 100%;
-            .drum-pad {
-                background-color: $sandy-brown;
-                border: 6px solid $burnt-sienna;
-                border-radius: 5px;
-                width: 100px;
-                height: 100px;
-                margin: 10px;
+            flex-direction: column;
+            width: 100%;
+            height: 400px;
+
+            .frame {
+                width: 100%;
+                height: 34%;
+                border-top: 10px solid $saffron;
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                color: black;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                font-size: 1.5rem;
-                font-weight: 700;
-                cursor: pointer;
-                transition: background-color 0.1s ease;
-                transition: scale 0.1s ease;
+                justify-content: space-around;
+
+                .drum-pad {
+                    background-color: $sandy-brown;
+                    border: 6px solid $burnt-sienna;
+                    border-radius: 5px;
+                    width: 80px;
+                    height: 80px;
+                    margin: 10px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    color: black;
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    cursor: pointer;
+                    transition: background-color 0.1s ease;
+                    transition: scale 0.1s ease;
+                    p {
+                        font-size: 0.7rem;
+                    }
+                }
+
+                .drum-pad:hover {
+                    background-color: #6a6a6a;
+                    scale: 1.1;
+                }
             }
-            
-            .drum-pad:hover {
-                background-color: #6a6a6a;
-                scale: 1.1;
-            }
+
         }
 
         .controlscontainer {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 50%;
-            height: 100%;
-            border-left: 10px solid $saffron;
-            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            height: 150px;
+
             #display {
                 background-color: $persian-green;
                 width: 200px;
                 height: 50px;
-                border-radius: 20px;
+                border-bottom-left-radius: 10px;
                 border: 5px solid $saffron;
                 font-size: 1.5rem;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -82,9 +94,3 @@ body {
         }
     }
 }
-
-
-
-
-
-

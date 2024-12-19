@@ -2,7 +2,7 @@ import React from "react";
 
 export default function App() {
 
-    
+    const [displayInfo, setDisplayInfo] = React.useState("")
 
     const data = [
         {
@@ -52,40 +52,68 @@ export default function App() {
         },
 
     ];
-    
+
     const drumItems = data.map(item => {
         return (
             <div
                 className="drum-pad"
-                id={item.text}
-                onClick={() => handleClick(item.text)}
+                id={item.audioUrl}
+                onClick={() => handleClick(item)}
                 key={item.text}
-                >
+            >
                 {item.text} {/*The Div Text*/}
                 <audio
                     className="clip"
                     src={item.audioUrl}
                     id={item.text}>
                 </audio>
-                <p>{item.name}</p>
             </div>
         )
     })
-    
-    function handleClick(id) {
-       console.log(id)
+
+    React.useEffect(() => {
+        function handleKeyPress(event) {
+            const key = event.key.toUpperCase();
+            const item = data.find(d => d.text === key);
+            if (item) {
+                handleClick(item);
+            }
+        }
+
+        window.addEventListener("keydown", handleKeyPress);
+        return () => {
+            window.removeEventListener("keydown", handleKeyPress);
+        };
+    }, []);
+
+    // function handleClick(item) {
+    //     setDisplayInfo(() => item.name)
+    //     const audio = new Audio(item.audioUrl)
+    //     if (item.audioUrl) {
+    //         audio.currentTime = 0;
+    //         audio.play();
+    //     }
+    // }
+    function handleClick(item) {
+        setDisplayInfo(item.name);
+        
+        const audioElement = document.getElementById(item.text);  // Get the audio element by its ID
+        if (audioElement) {
+            audioElement.currentTime = 0;  // Reset the audio to start from the beginning
+            audioElement.play();  // Play the audio
+        }
     }
 
     return (
         <section>
             <div id="drum-machine">
                 <div className="padbank">
-                    <div className="frame">{drumItems.slice(0,3)}</div>
-                    <div className="frame">{drumItems.slice(3,6)}</div>
-                    <div className="frame">{drumItems.slice(6,9)}</div>
+                    <div className="frame">{drumItems.slice(0, 3)}</div>
+                    <div className="frame">{drumItems.slice(3, 6)}</div>
+                    <div className="frame">{drumItems.slice(6, 9)}</div>
                 </div>
-                <div className="controlscontainer"> 
-                    <div id="display">Teseste</div>
+                <div className="controlscontainer">
+                    <div id="display">{displayInfo}</div>
                 </div>
             </div>
         </section>
